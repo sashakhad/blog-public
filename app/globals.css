@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-dev-bg text-dev-text;
+  }
+}
+
+@layer components {
+  .prose {
+    @apply max-w-none;
+  }
+  
+  .prose p {
+    @apply mb-4 leading-relaxed;
+  }
+  
+  .prose a {
+    @apply text-dev-accent hover:underline;
+  }
+  
+  .prose ul, .prose ol {
+    @apply mb-4 pl-6;
+  }
+  
+  .prose li {
+    @apply mb-2;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-dev-accent pl-4 italic text-dev-secondary;
+  }
+  
+  .prose code {
+    @apply bg-dev-card px-2 py-1 rounded text-sm font-mono;
+  }
+  
+  .prose pre {
+    @apply bg-dev-card p-4 rounded-lg overflow-x-auto;
+  }
+  
+  .prose pre code {
+    @apply bg-transparent p-0;
+  }
+  
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    @apply font-bold text-dev-text mb-4 mt-8;
+  }
+  
+  .prose h1 {
+    @apply text-3xl;
+  }
+  
+  .prose h2 {
+    @apply text-2xl;
+  }
+  
+  .prose h3 {
+    @apply text-xl;
+  }
+}
