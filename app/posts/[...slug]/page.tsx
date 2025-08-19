@@ -85,34 +85,36 @@ const Post = async ({ params }: { params: Promise<{ slug: string[] }> }) => {
             )}
           </div>
         </article>
-        <div className="flex w-full justify-between mt-10">
+        <div className="flex w-full justify-between items-start mt-10 gap-8">
           {prevPost ? (
             <Link
               href={`/posts/${prevPost.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+              className="flex-1 max-w-[45%]"
             >
-              <div className="text-dev-text hover:text-dev-accent">
+              <div className="text-dev-text hover:text-dev-accent text-left">
                 <div className="flex items-center gap-2">
-                  <span>←</span>
-                  {prevPost.title}
+                  <span className="flex-shrink-0">←</span>
+                  <span className="truncate">{prevPost.title}</span>
                 </div>
               </div>
             </Link>
           ) : (
-            <div />
+            <div className="flex-1 max-w-[45%]" />
           )}
           {nextPost ? (
             <Link
               href={`/posts/${nextPost.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+              className="flex-1 max-w-[45%]"
             >
-              <div className="text-dev-text hover:text-dev-accent">
-                <div className="flex items-center gap-2">
-                  {nextPost.title}
-                  <span>→</span>
+              <div className="text-dev-text hover:text-dev-accent text-right">
+                <div className="flex items-center gap-2 justify-end">
+                  <span className="truncate">{nextPost.title}</span>
+                  <span className="flex-shrink-0">→</span>
                 </div>
               </div>
             </Link>
           ) : (
-            <div />
+            <div className="flex-1 max-w-[45%]" />
           )}
         </div>
       </div>
