@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         "dev-primary": "#1a1a1a",
-        "dev-accent": "#3b82f6", 
+        "dev-accent": "#10b981", 
         "dev-text": "#f8fafc",
         "dev-secondary": "#64748b",
         "dev-bg": "#0f172a",

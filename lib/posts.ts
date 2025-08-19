@@ -93,41 +93,54 @@ export function getPostsData(): { sortedPosts: PostData[]; groupedPosts: { [year
   return { sortedPosts, groupedPosts };
 }
 
-export function getAllPostIds(): { params: { id: string } }[] {
+export function getAllPostIds(): PostData[] {
   const allFiles = collectMarkdownFiles(postsDirectory);
   
   return allFiles.map((filePath) => {
+    const fileContents = fs.readFileSync(filePath, "utf8");
+    const matterResult = matter(fileContents);
     const relativePath = path.relative(postsDirectory, filePath);
     const id = relativePath.replace(/\.md$/, "");
     
+    const wordCount = countWords(matterResult.content);
+    const readingTime = calculateReadingTime(wordCount);
+    
     return {
-      params: {
-        id,
-      },
+      id,
+      title: matterResult.data.title || "Untitled",
+      date: matterResult.data.date || "1970.01.01",
+      tags: Array.isArray(matterResult.data.tags) ? matterResult.data.tags : [],
+      readingTime,
     };
   });
 }
 
-export async function getPostData(id: string): Promise<PostData> {
-  const fullPath = path.join(postsDirectory, `${id}.md`);
+export async function getPostData(titleSlug: string): Promise<PostData | null> {
+  const allPosts = getAllPostIds();
+  const post = allPosts.find(
+    (post) =>
+      post.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === titleSlug,
+  );
+
+  if (!post) return null;
+
+  const fullPath = path.join(postsDirectory, `${post.id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
-  
   const matterResult = matter(fileContents);
-  
   const processedContent = await remark()
     .use(html)
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
-  
+
   const wordCount = countWords(matterResult.content);
   const readingTime = calculateReadingTime(wordCount);
-  
+
   return {
-    id,
+    id: post.id,
+    contentHtml,
     title: matterResult.data.title || "Untitled",
     date: matterResult.data.date || "1970.01.01",
     tags: Array.isArray(matterResult.data.tags) ? matterResult.data.tags : [],
     readingTime,
-    contentHtml,
   };
 }

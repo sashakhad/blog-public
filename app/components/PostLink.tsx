@@ -61,7 +61,7 @@ function PostLink({
               }`}
               onClick={() => setFilter(tag.toLowerCase())}
             >
-              {tag.toLowerCase()}
+              #{tag.toLowerCase()}
             </span>
           ))}
         {tags.length > 2 && !showAllTags && (
