@@ -42,9 +42,9 @@ function PostLink({
         <Link
           href={`/posts/${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
         >
-          <div className="flex justify-between gap-5">
+          <div className="flex justify-between items-center gap-5">
             <h4 className="text-xl text-dev-text decoration-dev-text hover:text-dev-accent">{title}</h4>
-            <span className="mt-1.5 text-dev-accent">→</span>
+            <span className="text-dev-accent">→</span>
           </div>
         </Link>
       </div>

@@ -56,11 +56,13 @@ const Post = async ({ params }: { params: Promise<{ slug: string[] }> }) => {
 
   return (
     <div className="px-10 py-10 md:px-40 md:py-20 lg:px-80 xl:px-96">
-      <Link href="/">
-        <span className="mb-5 mt-1.5 text-dev-accent cursor-pointer hover:text-dev-text">← Back to posts</span>
-      </Link>
-      <div className="flex w-full flex-col items-center justify-center gap-5">
-        <article>
+      <div className="mb-8">
+        <Link href="/">
+          <span className="text-dev-accent cursor-pointer hover:text-dev-text">← Back to posts</span>
+        </Link>
+      </div>
+      <div className="flex w-full flex-col items-start justify-start gap-5">
+        <article className="w-full">
           <div className="mb-5 flex flex-col">
             <h1 className="mb-3 text-3xl lg:text-4xl text-dev-text">{postData.title}</h1>
           </div>
