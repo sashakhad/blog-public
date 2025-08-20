@@ -65,89 +65,89 @@
     @apply text-xl;
   }
 
-  /* Syntax highlighting styles for highlight.js */
+  /* Syntax highlighting styles for highlight.js - increased specificity */
   .prose pre code.hljs {
     @apply bg-transparent p-0;
   }
   
-  /* Dark theme syntax highlighting */
-  .hljs {
+  /* Dark theme syntax highlighting with higher specificity */
+  .prose .hljs {
     @apply bg-dev-card text-dev-text;
   }
   
-  .hljs-comment,
-  .hljs-quote {
+  .prose .hljs-comment,
+  .prose .hljs-quote {
     @apply text-gray-500 italic;
   }
   
-  .hljs-keyword,
-  .hljs-selector-tag,
-  .hljs-subst {
+  .prose .hljs-keyword,
+  .prose .hljs-selector-tag,
+  .prose .hljs-subst {
     @apply text-blue-400;
   }
   
-  .hljs-number,
-  .hljs-literal,
-  .hljs-variable,
-  .hljs-template-variable,
-  .hljs-tag .hljs-attr {
+  .prose .hljs-number,
+  .prose .hljs-literal,
+  .prose .hljs-variable,
+  .prose .hljs-template-variable,
+  .prose .hljs-tag .hljs-attr {
     @apply text-orange-400;
   }
   
-  .hljs-string,
-  .hljs-doctag {
+  .prose .hljs-string,
+  .prose .hljs-doctag {
     @apply text-green-400;
   }
   
-  .hljs-title,
-  .hljs-section,
-  .hljs-selector-id {
+  .prose .hljs-title,
+  .prose .hljs-section,
+  .prose .hljs-selector-id {
     @apply text-yellow-400;
   }
   
-  .hljs-type,
-  .hljs-class .hljs-title {
+  .prose .hljs-type,
+  .prose .hljs-class .hljs-title {
     @apply text-purple-400;
   }
   
-  .hljs-tag,
-  .hljs-name,
-  .hljs-attribute {
+  .prose .hljs-tag,
+  .prose .hljs-name,
+  .prose .hljs-attribute {
     @apply text-red-400;
   }
   
-  .hljs-regexp,
-  .hljs-link {
+  .prose .hljs-regexp,
+  .prose .hljs-link {
     @apply text-cyan-400;
   }
   
-  .hljs-symbol,
-  .hljs-bullet {
+  .prose .hljs-symbol,
+  .prose .hljs-bullet {
     @apply text-pink-400;
   }
   
-  .hljs-built_in,
-  .hljs-builtin-name {
+  .prose .hljs-built_in,
+  .prose .hljs-builtin-name {
     @apply text-indigo-400;
   }
   
-  .hljs-meta {
+  .prose .hljs-meta {
     @apply text-gray-400;
   }
   
-  .hljs-deletion {
+  .prose .hljs-deletion {
     @apply bg-red-900 text-red-200;
   }
   
-  .hljs-addition {
+  .prose .hljs-addition {
     @apply bg-green-900 text-green-200;
   }
   
-  .hljs-emphasis {
+  .prose .hljs-emphasis {
     @apply italic;
   }
   
-  .hljs-strong {
+  .prose .hljs-strong {
     @apply font-bold;
   }
 }
