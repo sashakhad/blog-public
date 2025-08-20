@@ -37,7 +37,7 @@ function PostLink({
         : format(parsedDate, "MMM d, yyyy");
 
   return (
-    <div className="box-border flex w-full flex-col items-start justify-center gap-2 px-20 pt-5">
+    <div className="box-border flex w-full flex-col items-start justify-center gap-2 pl-16 pr-4 pt-3 md:px-20 md:pt-5">
       <div>
         <Link
           href={`/posts/${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
@@ -51,30 +51,50 @@ function PostLink({
       <div className="text-sm text-dev-secondary">
         {formattedDate} {readingTime ? `• ${readingTime} min read` : ""}
       </div>
-      <div className="flex flex-wrap gap-2 text-sm">
+      <div className="flex flex-wrap gap-1 text-xs md:gap-2 md:text-sm">
         {tags &&
           tags.map((tag, index) => (
             <span
               key={tag}
               className={`cursor-pointer text-dev-accent underline hover:font-semibold ${
-                index >= 2 && !showAllTags ? "hidden sm:inline" : ""
+                !showAllTags
+                  ? index >= 3
+                    ? "hidden"
+                    : index >= 2
+                      ? "hidden md:inline"
+                      : ""
+                  : ""
               }`}
               onClick={() => setFilter(tag.toLowerCase())}
             >
               #{tag.toLowerCase()}
             </span>
           ))}
+
+        {/* Mobile "more" indicator */}
         {tags.length > 2 && !showAllTags && (
           <span
-            className="cursor-pointer text-sm underline text-dev-secondary sm:hidden"
+            className="cursor-pointer text-sm underline text-dev-secondary md:hidden"
             onClick={() => setShowAllTags(true)}
           >
             + {tags.length - 2} more
           </span>
         )}
-        {tags.length > 2 && showAllTags && (
+
+        {/* Desktop "more" indicator */}
+        {tags.length > 3 && !showAllTags && (
           <span
-            className="cursor-pointer text-sm font-bold text-dev-secondary sm:hidden"
+            className="hidden cursor-pointer text-sm underline text-dev-secondary md:inline"
+            onClick={() => setShowAllTags(true)}
+          >
+            + {tags.length - 3} more
+          </span>
+        )}
+
+        {/* Show less button */}
+        {showAllTags && tags.length > 2 && (
+          <span
+            className="cursor-pointer text-sm font-bold text-dev-secondary"
             onClick={() => setShowAllTags(false)}
           >
             show less
