@@ -91,7 +91,7 @@ function FilteredPosts({ allPostsData }: FilteredPostsProps): JSX.Element {
   }
 
   return (
-    <div className="flex w-full flex-col items-center justify-start gap-5 overflow-auto p-4 pt-10 md:w-2/3">
+    <div className="flex w-full flex-col items-center justify-start gap-5 overflow-auto p-4 pt-5 md:w-2/3">
       {filteredPosts.length > 0 && !!filter.length && (
         <div className="box-border flex w-full flex-col items-start gap-10 px-20 pt-5">
           <button onClick={clearFilter} className="text-dev-accent hover:text-dev-text">
